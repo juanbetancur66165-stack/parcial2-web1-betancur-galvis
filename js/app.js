@@ -17,7 +17,7 @@ const selectTemporada = document.querySelector('#filtro-temporada');
 
 // R3 · Recibe UN episodio y devuelve el HTML de su tarjeta (modelos 1 y 2 de index.html).
 const tarjetaHTML = (episodio) => {
-  const estaVisto = vistos.includes(episodio.id);
+  const estaVisto = false;
 
   const clasesTarjeta = estaVisto
     ? 'flex flex-col gap-2 rounded-2xl bg-white p-5 shadow ring-2 ring-emerald-500'
