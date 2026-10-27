@@ -73,6 +73,10 @@ const mostrarError = (mensaje) => {
 // y actualiza el contador con el formato «7 de 20 episodios · 187 personajes».
 const render = () => {
  const visibles = filtrarEpisodios(episodios, filtros);
+ const personajesVisibles = contarPersonajes(visibles);
+
+  contador.textContent =
+    `${visibles.length} de ${episodios.length} episodios · ${personajesVisibles} personajes`;
 
   if (visibles.length === 0) {
     lista.innerHTML = `
