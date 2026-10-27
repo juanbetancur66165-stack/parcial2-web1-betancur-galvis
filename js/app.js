@@ -17,7 +17,7 @@ const selectTemporada = document.querySelector('#filtro-temporada');
 
 // R3 · Recibe UN episodio y devuelve el HTML de su tarjeta (modelos 1 y 2 de index.html).
 const tarjetaHTML = (episodio) => {
-  const estaVisto = false;
+  const estaVisto = vistos.includes(episodio.id);
 
   const clasesTarjeta = estaVisto
     ? 'flex flex-col gap-2 rounded-2xl bg-white p-5 shadow ring-2 ring-emerald-500'
@@ -120,6 +120,23 @@ formFiltros.addEventListener('submit', (evento) => {
 
 // R6 · UN solo listener en #lista (delegación) que atienda el botón de cada tarjeta
 // y también el botón Reintentar.
-// TODO
 
+lista.addEventListener('click', (evento) => {
+  const botonReintentar = evento.target.closest('#btn-reintentar');
+
+  if (botonReintentar) {
+    cargar();
+    return;
+  }
+  const botonVisto = evento.target.closest('button[data-id]');
+
+  if (!botonVisto) {
+    return;
+  }
+  const id = Number(botonVisto.dataset.id);
+  vistos = alternarId(vistos, id);
+  guardarVistos(vistos);
+
+  render();
+});
 cargar();
